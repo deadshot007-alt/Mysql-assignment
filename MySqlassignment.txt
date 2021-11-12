@@ -1,0 +1,132 @@
+CREATE TABLE SalesPeople(
+	Snum INT NOT NULL,
+    Sname varchar(30) UNIQUE,
+    city varchar(30),
+    Comm varchar(40),
+    PRIMARY KEY(Snum)
+    );
+    
+INSERT INTO SalesPeople(Snum,Sname,city,Comm)
+values(1001,"Peel","London","12"),
+
+(1002,"Serres","Sanjose","13"),
+
+(1004,"Motika","London" ,"11"),
+
+(1007 ,"Rifkin","Barcelona","15"),
+
+(1003, "Axelrod","Newyork" ,"10");
+
+
+CREATE TABLE Customers(
+Cnum INT NOT NULL,
+Cname varchar(30),
+City varchar(30) NOT NULL,
+Snum int,
+PRIMARY KEY(Cnum),
+FOREIGN KEY (Snum) REFERENCES CREATE TABLE SalesPeople(
+	Snum INT NOT NULL,
+    Sname varchar(30) UNIQUE,
+    city varchar(30),
+    Comm varchar(40),
+    PRIMARY KEY(Snum)
+    );
+    
+INSERT INTO SalesPeople(Snum,Sname,city,Comm)
+values(1001,"Peel","London","12"),
+
+(1002,"Serres","Sanjose","13"),
+
+(1004,"Motika","London" ,"11"),
+
+(1007 ,"Rifkin","Barcelona","15"),
+
+(1003, "Axelrod","Newyork" ,"10");
+
+
+CREATE TABLE Customers(
+Cnum INT NOT NULL,
+Cname varchar(30),
+City varchar(30) NOT NULL,
+Snum int,
+PRIMARY KEY(Cnum),
+FOREIGN KEY (Snum) REFERENCES SalesPeople(Snum)
+);
+
+INSERT INTO Customers(Cnum,Cname,City,Snum)
+values(2001 , "Hoffman", "London", 1001),
+
+(2002 , "Giovanni", "Rome" ,1003),
+
+(2003 , "Liu","Sanjose",1002),
+
+(2004 , "Grass","Berlin", 1002),
+
+(2006, "Clemens","London", 1001),
+
+(2008, "Cisneros", "Sanjose", 1007),
+
+(2007,"Pereira" ,"Rome" ,1004);
+
+);
+
+INSERT INTO Customers(Cnum,Cname,City,Snum)
+values(2001 , "Hoffman", "London", 1001),
+
+(2002 , "Giovanni", "Rome" ,1003),
+
+(2003 , "Liu","Sanjose",1002),
+
+(2004 , "Grass","Berlin", 1002),
+
+(2006, "Clemens","London", 1001),
+
+(2008, "Cisneros", "Sanjose", 1007),
+
+(2007,"Pereira" ,"Rome" ,1004);
+
+
+create table Orders(
+Onum INT NOT NULL ,
+Amt FLOAT ,
+Odate varchar(50),
+Cnum INT,
+Snum INT,
+PRIMARY KEY (Onum),
+FOREIGN KEY (Cnum) REFERENCES Customers(Cnum),
+FOREIGN KEY (Snum) REFERENCES SalesPeople(Snum)
+);
+
+insert into Orders(Onum,Amt,Odate,Cnum,Snum)
+values(3001, 18.69, "3-10-1990" ,2008 ,1007),
+
+(3003 ,767.19, "3-10-1990", 2001 ,1001),
+
+(3002 ,1900.10 ,"3-10-1990", 2007 ,1004),
+
+(3005 , 5160.45, "3-10-1990" ,2003, 1002),
+
+(3006,  1098.16, "3-10-1990", 2008 ,1007),
+
+(3009, 1713.23 ,"4-10-1990", 2002 ,1003),
+
+(3007, 75.75, "4-10-1990", 2004, 1002),
+
+(3008,  4273.00, "5-10-1990", 2006, 1001),
+
+(3010,  1309.95, "6-10-1990", 2004, 1002),
+
+(3011,  9891.88, "6-10-1990", 2006 ,1001);
+
+
+
+
+1.) select * from salespeople WHERE Sname LIKE "A%" OR "a%";
+
+2.)select * from orders WHERE Amt > 2000 ;
+
+3.)select * from salespeople WHERE city = "Newyork";
+
+4.)select * from salespeople WHERE city ="London" OR city = "Paris";
+
+5.)select Onum,Odate from orders;
